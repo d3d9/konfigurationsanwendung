@@ -1,0 +1,20 @@
+{% extends "loggedin.html" %}
+
+{% block main %}
+
+<h3>Konfigurations&uuml;bersicht</h3>
+
+<form action="/newconf">
+  <input type="submit" value="Neue Konfiguration erstellen" />
+</form>
+
+{% for config in configs %}
+  <div class="dashboardconfig">
+    <h4>{{ config.configname or '<Konfiguration ohne Name>' }}</h4>
+    
+    <a href="/conf/{{ config.num }}">Bearbeiten</a>
+  </div>
+  <hr/>
+{% endfor %}
+
+{% endblock %}

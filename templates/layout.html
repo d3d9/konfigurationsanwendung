@@ -1,0 +1,37 @@
+<!doctype html>
+
+<head>
+    <title>Konfigurationsanwendung</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <div class="maingrid">
+        <div class="logo">
+            &#x2699;
+        </div>
+        <header>
+            <h1>Konfigurationsanwendung</h1>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            <li>&#8505;&emsp;{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </header>
+        <aside class="sidebar">
+            {% block sidebar %}
+              <a href="/login">Login</a><br/>
+              <a href="/register">Registrierung</a>
+            {% endblock %}
+        </aside>
+        <main>
+            {% block main %}
+            {% endblock %}
+        </main>
+        
+    </div>
+</body>

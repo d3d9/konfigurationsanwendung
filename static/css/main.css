@@ -1,0 +1,101 @@
+body {
+  font-size: 14pt;
+  background-color: white;
+  margin: 0px 0px 0px 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  grid-area: main;
+  background-color: inherit;
+  padding: 1em;
+}
+
+.maingrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "logo    header"
+                       "sidebar   main";
+  height: 100vh;
+  width: 100vw;
+}
+
+.maingrid > header {
+  background-color: lightgray;
+  padding: 1em;
+  box-shadow: 4px 4px 4px rgba(0,0,0,.3);
+  grid-area: header;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.maingrid > header > h1 {
+  font-size: 1.2em;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  box-shadow: 4px 4px 4px rgba(0,0,0,.3);
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
+.flashes {
+  padding-inline-start: 0;
+}
+
+.flashes > li {
+  display: inline-block;
+  background-color: white;
+
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+
+  font-size: 0.9em;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: lightgrey;
+  padding: 1em;
+  box-shadow: 4px 4px 4px rgba(0,0,0,.3);
+  z-index: 1;
+}
+
+.dashboardconfig {
+    margin: 10px;
+    background-color: #eee;
+}
+
+label {
+  min-width: 6em;
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.fielddesc {
+  font-size: 9pt;
+  font-style: italic;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 3px;
+}

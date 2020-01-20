@@ -1,0 +1,47 @@
+{% extends "loggedin.html" %}
+
+{% block main %}
+
+<h3>Admin-&Uuml;bersicht</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Beschreibung</th>
+      <th>Admin?</th>
+      <th>Konfigurations-ID</th>
+      <th>Konfigurationsname</th>
+      <th>Konfigurieren</th>
+      <th>Neue Konfiguration erstellen</th>
+      <th>Einstellungen</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+    <tr>
+      <td rowspan="{{ user.configs|length or 1 }}">{{ user.id }}</td>
+      <td rowspan="{{ user.configs|length or 1 }}">{{ user.desc }}</td>
+      <td rowspan="{{ user.configs|length or 1 }}">{{ user.admin }}</td>
+      {% if user.configs|length %}
+        <td>{{ user.configs[0].num }}</td>
+        <td>{{ user.configs[0].configname or '<ohne Name>' }}</td>
+        <td><a href="/admin/conf/{{ user.id }}/{{ user.configs[0].num }}">Konfigurieren</a></td>
+      {% else %}
+        <td colspan="3">keine</td>
+      {% endif %}
+      <td rowspan="{{ user.configs|length or 1 }}"><a href="/admin/newconf/{{ user.id }}">Neue Konfiguration erstellen</a></td>
+      <td rowspan="{{ user.configs|length or 1 }}"><a href="/admin/settings/{{ user.id }}">Einstellungen</a></td>
+    </tr>
+    {% for conf in user.configs[1:] %}
+      <tr>
+        <td>{{ conf.num }}</td>
+        <td>{{ conf.configname or '<ohne Name>' }}</td>
+        <td><a href="/admin/conf/{{ user.id }}/{{ conf.num }}">Konfigurieren</a></td>
+      </tr>
+    {% endfor %}
+  {% endfor %}
+  </tbody>  
+</table>
+
+{% endblock %}

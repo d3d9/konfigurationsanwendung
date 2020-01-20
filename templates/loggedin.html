@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block main %}
+{% endblock %}
+
+{% block sidebar %}
+Eingeloggt als {{ current_user.id }}.
+{% if current_user.desc %}
+  <br/>
+  Beschreibung:<br/>
+  <small>{{ current_user.desc }}</small>
+{% endif %}
+<br/><br/>
+{% if current_user.admin %}
+  <a href="/admin">Admin-&Uuml;bersicht</a>
+  <br/>
+{% endif %}
+<a href="/dashboard">Konfigurations&uuml;bersicht</a><br/>
+<hr/>
+<a href="/settings">Einstellungen</a><br/>
+<a href="/logout">Logout</a>
+{% endblock %}

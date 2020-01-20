@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<form action="" method="post" name="login">
+{{form.hidden_tag()}}
+<fieldset>
+<legend>Login</legend>
+{{ form.username.label() }}{{ form.username() }}<br/>
+{{ form.password.label() }}{{ form.password() }}<br/>
+{{ form.remember.label() }}{{ form.remember() }}<br/>
+{{ form.submit() }}
+</fieldset>
+</form>
+
+{% endblock %}

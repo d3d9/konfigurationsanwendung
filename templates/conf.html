@@ -1,0 +1,51 @@
+{% extends "loggedin.html" %}
+
+{% block main %}
+
+<h3>Konfiguration: {{ form.configname.data or '' }}</h3>
+
+<form action="" method="post" name="conf">
+<fieldset>
+<legend>Daten</legend>
+{% for field in form if not field.name in ("public_id", "configname", "submit", "delete", "delete_api_key", "create_api_key") %}
+    {% if field.type not in ('CSRFTokenField') %}
+        <br/>
+        {{ field.label() }}
+    {% endif %}
+    {{ field() }}
+    {% if field.description %}
+        <span class="fielddesc">{{ field.description }}</span>
+    {% endif %}
+{% endfor %}
+<br/>
+</fieldset>
+
+<fieldset>
+<legend>Einstellungen</legend>
+<label>Name</label>
+{{ form.configname() }}
+<br/>
+<label>&ouml;ffentliche ID</label>
+{{ form.public_id() }}
+<span class="fielddesc">falls leer: Zugriff nur &uuml;ber API-Key</span>
+<br/>
+<br/>
+<label>API-Key</label>
+{% if apikeydata %}
+  &hellip;{{ apikeydata.end }}, generiert {{ apikeydata.gen }}
+  <br/>
+  {{ form.delete_api_key.label() }}{{ form.delete_api_key() }}
+{% else %}
+  <em>nicht gesetzt</em>
+  <br/>
+  {{ form.create_api_key.label() }}{{ form.create_api_key() }}
+{% endif %}
+</fieldset>
+
+<fieldset>
+<legend>Aktionen</legend>
+{{ form.submit() }}
+{{ form.delete(onclick="return confirm('Sind Sie sich sicher?')") }}
+</fieldset>
+</form>
+{% endblock %}

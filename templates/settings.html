@@ -1,0 +1,30 @@
+{% extends "loggedin.html" %}
+
+{% block main %}
+
+<h3>Benutzereinstellungen: {{ user.id }}</h3>
+
+<form action="" method="post" name="conf">
+{{form.hidden_tag()}}
+<fieldset>
+<legend>Daten</legend>
+<br/>
+<label>Nutzername</label> <em>{{ user.id }}</em><br/>
+{{ form.desc.label() }}{{ form.desc() }}<br/>
+<br/>
+<h4>Passwort&auml;nderung:</h4>
+{% if form.password %}
+  {{ form.password.label() }}{{ form.password() }}<br/>
+{% endif %}
+{{ form.new_password.label() }}{{ form.new_password() }}<br/>
+{{ form.new_password2.label() }}{{ form.new_password2() }}<br/>
+<br/>
+</fieldset>
+
+<fieldset>
+<legend>Aktionen</legend>
+{{ form.submit() }}
+{{ form.delete(onclick="return confirm('Sind Sie sich sicher?')") }}
+</fieldset>
+</form>
+{% endblock %}
